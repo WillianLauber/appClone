@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(),
           bodyText2: TextStyle(),
         ).apply(
-          bodyColor: Colors.white,
-          displayColor: Colors.orange,
+          // bodyColor: Colors.white,
+          displayColor: Colors.white,
         ),
         primarySwatch: Colors.orange,
         accentColor: Colors.orange,
@@ -39,9 +39,10 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(),
           bodyText2: TextStyle(),
         ).apply(
-          bodyColor: Colors.white,
-          displayColor: Colors.orange,
+          // bodyColor: Colors.white,
+          displayColor: Colors.white,
         ),
+
         // This makes the visual density adapt to the platform that you run
         // the app on. For desktop platforms, the controls will be smaller and
         // closer together (more dense) than on mobile platforms.
@@ -153,51 +154,48 @@ class _MyHomePageState extends State<MyHomePage> {
                 // shape: BoxShape.circle, para deixá-lo quadrado
               ),
               child: Padding(
-                padding: const EdgeInsets.only(left: 32.0),
+                padding: const EdgeInsets.only(left: 22.0),
                 child: Column(
                   children: [
                     Row(children: <Widget>[
                       Container(
-                          padding: EdgeInsets.only(top: 8.0),
-                          color: Colors.white10,
-                          width: 100,
-                          height: 120,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(Icons.assignment,
-                                      color: Colors.white, size: 32.0),
-                                  Center(
-                                      child: Text(
-                                    'Faturas em aberto',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16.0,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  )),
-                                ]),
-                          )),
+                        padding: EdgeInsets.only(top: 8.0),
+                        color: Colors.black12,
+                        width: 110,
+                        height: 120,
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(Icons.assignment_outlined,
+                                  color: Colors.white, size: 60.0),
+                              Center(
+                                  child: Text(
+                                'Faturas em aberto',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              )),
+                            ]),
+                      ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                            padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.only(top: 0.0, left:8),
+                        child:     Container(
+                            padding: EdgeInsets.only(top: 8.0),
                             color: Colors.black12,
-                            width: 100,
+                            width: 110,
                             height: 120,
                             child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
-                                  Icon(Icons.assignment,
-                                      color: Colors.white, size: 32.0),
+                                  Icon(Icons.bar_chart_outlined,
+                                      color: Colors.white, size: 40.0),
                                   Text(
-                                    'Faturas em aberto',
+                                    'Histórico de consumo',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 16.0,
@@ -211,7 +209,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Container(
                             padding: EdgeInsets.all(8.0),
                             color: Colors.black12,
-                            width: 100,
+                            width: 110,
                             height: 120,
                             child: Column(
                                 mainAxisAlignment:
@@ -221,7 +219,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Icon(Icons.assignment,
                                       color: Colors.white, size: 32.0),
                                   Text(
-                                    'Faturas em aberto',
+                                    'Relatar falta de energia',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 16.0,
@@ -233,52 +231,82 @@ class _MyHomePageState extends State<MyHomePage> {
                     ]),
                     Row(children: <Widget>[
                       Container(
-                          padding: EdgeInsets.all(8.0),
-                          color: Colors.white10,
-                          width: 100,
+                          padding: EdgeInsets.only(top: 8.0),
+                          color: Colors.black12,
+                          width: 110,
                           height: 120,
                           child: Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
-                                  Icon(Icons.assignment_outlined,
-                                      color: Colors.white, size: 60.0),
+                                  Icon(Icons.calendar_today_outlined,
+                                      color: Colors.white, size: 50.0),
                                   Center(
                                       child: Text(
-                                    'Faturas em aberto',
+                                    'Desligamentos programados',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 16.0,
+                                      fontSize: 14.0,
                                     ),
                                     textAlign: TextAlign.center,
                                   )),
                                 ]),
                           )),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.only(top: 0.0, left:8),
                         child: Container(
-                            padding: EdgeInsets.all(8.0),
+                            padding: EdgeInsets.only(top: 8.0),
                             color: Colors.black12,
-                            width: 100,
+                            width: 110,
                             height: 120,
                             child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
-                                  Icon(Icons.assignment,
-                                      color: Colors.white, size: 32.0),
-                                  Text('Faturas em aberto',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16.0,
-                                      )),
+                                  Icon(Icons.lightbulb_outline_rounded,
+                                      color: Colors.white, size: 50.0),
+                                  Text(
+                                    'Solicitar religação',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16.0,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  )
                                 ])),
                       ),
-                    ])
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                            padding: EdgeInsets.only(top: 8.0),
+                            color: Colors.black12,
+                            width: 110,
+                            height: 120,
+                            child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Icon(Icons.location_on_outlined,
+                                          color: Colors.white, size: 48.0),
+                                      Text(
+                                        'Lojas de atendimento',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 15.0,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      )
+                                    ]))),
+                      ),
+                    ]),
                   ],
                 ),
               ),
@@ -305,7 +333,7 @@ class _MyHomePageState extends State<MyHomePage> {
             )),
             Card(
                 child: ListTile(
-              leading: Icon(Icons.list_alt_rounded, color: Colors.orange),
+              leading: Icon(Icons.list_alt_rounded, ),
               title: Text("Minha unidade consumidora"),
               onTap: () {
                 print('card pressed');
