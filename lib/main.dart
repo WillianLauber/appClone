@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -27,13 +26,30 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
+        textTheme: TextTheme(
+          bodyText1: TextStyle(),
+          bodyText2: TextStyle(),
+        ).apply(
+          bodyColor: Colors.white,
+          displayColor: Colors.orange,
+        ),
         primarySwatch: Colors.orange,
+        accentColor: Colors.orange,
+        accentTextTheme: TextTheme(
+          bodyText1: TextStyle(),
+          bodyText2: TextStyle(),
+        ).apply(
+          bodyColor: Colors.white,
+          displayColor: Colors.orange,
+        ),
         // This makes the visual density adapt to the platform that you run
         // the app on. For desktop platforms, the controls will be smaller and
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Celesc'),
+      home: MyHomePage(
+        title: 'Celesc',
+      ),
     );
   }
 }
@@ -85,67 +101,193 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
-          title: Text(widget.title),
+          title: Text(
+            widget.title,
+            style: TextStyle(color: Colors.white),
+          ),
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.notifications),
               color: Colors.white,
+              iconSize: 30,
               onPressed: () {
                 showDialog();
               },
             ),
             IconButton(
-              icon: Icon(Icons.more_horiz_rounded),
+              icon: Icon(Icons.more_horiz),
               color: Colors.white,
-              iconSize: 24,
+              iconSize: 42,
               onPressed: () {
                 return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                //ItemLista("Comprovante de residência", Icons.home_outlined),
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      //ItemLista("Comprovante de residência", Icons.home_outlined),
 
-                Card(
-                child: ListTile(
-                leading: Icon(Icons.home_outlined),
-                title: Text("Comprovante de residêncie"),
-                onTap: () {
-                print('card pressed');
-                notifica(context);
-                },
-                onLongPress: x()),
-                )]);
+                      Card(
+                        child: ListTile(
+                            leading: Icon(Icons.home_outlined),
+                            title: Text("Comprovante de residência"),
+                            onTap: () {
+                              print('card pressed');
+                              notifica(context);
+                            },
+                            onLongPress: x()),
+                      )
+                    ]);
               },
             )
           ]),
-      body: Center(
+      body: SingleChildScrollView(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the pare$Rnt.
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[ Container(
-              padding: EdgeInsets.all(8.0),
-              color: Theme
-                  .of(context)
-                  .primaryColor,
-              width: 150,
-              height: 100,
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Icon(Icons.people, color: Colors.white,
-                        size: 32.0),
-                    Text('Contacts',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24.0,
-                        )),
-                  ])),
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/background.png'),
+                  fit: BoxFit.fill,
+                ),
+                // shape: BoxShape.circle, para deixá-lo quadrado
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 32.0),
+                child: Column(
+                  children: [
+                    Row(children: <Widget>[
+                      Container(
+                          padding: EdgeInsets.only(top: 8.0),
+                          color: Colors.white10,
+                          width: 100,
+                          height: 120,
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.assignment,
+                                      color: Colors.white, size: 32.0),
+                                  Center(
+                                      child: Text(
+                                    'Faturas em aberto',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16.0,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  )),
+                                ]),
+                          )),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                            padding: EdgeInsets.all(8.0),
+                            color: Colors.black12,
+                            width: 100,
+                            height: 120,
+                            child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.assignment,
+                                      color: Colors.white, size: 32.0),
+                                  Text(
+                                    'Faturas em aberto',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16.0,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  )
+                                ])),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                            padding: EdgeInsets.all(8.0),
+                            color: Colors.black12,
+                            width: 100,
+                            height: 120,
+                            child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.assignment,
+                                      color: Colors.white, size: 32.0),
+                                  Text(
+                                    'Faturas em aberto',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16.0,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  )
+                                ])),
+                      ),
+                    ]),
+                    Row(children: <Widget>[
+                      Container(
+                          padding: EdgeInsets.all(8.0),
+                          color: Colors.white10,
+                          width: 100,
+                          height: 120,
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.assignment_outlined,
+                                      color: Colors.white, size: 60.0),
+                                  Center(
+                                      child: Text(
+                                    'Faturas em aberto',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16.0,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  )),
+                                ]),
+                          )),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                            padding: EdgeInsets.all(8.0),
+                            color: Colors.black12,
+                            width: 100,
+                            height: 120,
+                            child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.assignment,
+                                      color: Colors.white, size: 32.0),
+                                  Text('Faturas em aberto',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16.0,
+                                      )),
+                                ])),
+                      ),
+                    ])
+                  ],
+                ),
+              ),
+            ),
 
             Card(
               child: ListTile(
                   leading: Icon(Icons.home_outlined),
-                  title: Text("Comprovante de residêncie"),
+                  title: Text("Comprovante de residência"),
                   onTap: () {
                     print('card pressed');
                     notifica(context);
@@ -157,14 +299,13 @@ class _MyHomePageState extends State<MyHomePage> {
               leading: Icon(Icons.access_time_sharp),
               title: Text("Agendar atendimento"),
               onTap: () {
-
-                onPressed: _launchURL();
-
+                onPressed:
+                _launchURL();
               },
             )),
             Card(
                 child: ListTile(
-              leading: Icon(Icons.list_alt_rounded),
+              leading: Icon(Icons.list_alt_rounded, color: Colors.orange),
               title: Text("Minha unidade consumidora"),
               onTap: () {
                 print('card pressed');
@@ -233,12 +374,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-showAlertDialog1(BuildContext context)
-{
+showAlertDialog1(BuildContext context) {
   // configura o button
   Widget okButton = FlatButton(
     child: Text("OK"),
-    onPressed: () { },
+    onPressed: () {},
   );
   // configura o  AlertDialog
   AlertDialog alerta = AlertDialog(
@@ -256,6 +396,7 @@ showAlertDialog1(BuildContext context)
     },
   );
 }
+
 _launchURL() async {
   const url = 'https://celproxximoweb.celesc.com.br?mod=infotv.agendamento';
   if (await canLaunch(url)) {
@@ -264,6 +405,7 @@ _launchURL() async {
     throw 'Could not launch $url';
   }
 }
+
 x() {}
 
 notifica(context) {
