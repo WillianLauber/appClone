@@ -2,7 +2,7 @@
 class UnidadeConsumidora {
   final int numero;
   final int documento;
-  final DateTime dataNascCliente;
+  final String dataNascCliente;
   final String apelido;
 
   @override

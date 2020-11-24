@@ -1,10 +1,19 @@
 import 'dart:io';
+import 'package:celesc_app/screens/cadastro.dart';
+import 'package:celesc_app/screens/faturas.dart';
+import 'package:celesc_app/screens/lista.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:celesc_app/report_pdf.dart';
 import 'package:celesc_app/screens/sobre.dart';
+
+import 'database/app_database.dart';
+
 // ignore: avoid_web_libraries_in_flutter
+enum WhyFarther { harder, smarter, selfStarter, tradingCharter }
+
+int unidadeConsummidora = 0;
 
 void main() {
   runApp(MyApp());
@@ -95,6 +104,9 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+
+    future:
+    findAll();
     return Scaffold(
       appBar: AppBar(
           iconTheme: IconThemeData(
@@ -115,29 +127,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 showDialog();
               },
             ),
-            IconButton(
-              icon: Icon(Icons.more_horiz),
-              color: Colors.white,
-              iconSize: 42,
-              onPressed: () {
-                return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      //ItemLista("Comprovante de residência", Icons.home_outlined),
-
-                      Card(
-                        child: ListTile(
-                            leading: Icon(Icons.home_outlined),
-                            title: Text("Comprovante de residência"),
-                            onTap: () {
-                              print('card pressed');
-                              notifica(context);
-                            },
-                            onLongPress: x()),
-                      )
-                    ]);
-              },
-            )
+            showMenu(context),
+            //  child: IconButton( icon: Icon(
+            //     MyIcon.edit,
+            //     // color: Colors.white,
+            //     size: 35, color: Colors.white,
+            //   ),onPressed: _buildLayoutContainer,
+            //  ),
           ]),
       body: SingleChildScrollView(
         // Center is a layout widget. It takes a single child and positions it
@@ -158,31 +154,43 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: [
                     Row(children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.only(top: 8.0),
-                        color: Colors.black12,
-                        width: 110,
-                        height: 120,
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(Icons.assignment_outlined,
-                                  color: Colors.white, size: 60.0),
-                              Center(
-                                  child: Text(
-                                'Faturas em aberto',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16.0,
-                                ),
-                                textAlign: TextAlign.center,
-                              )),
-                            ]),
-                      ),
+                      Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => faturas()));
+                            },
+                            child: Container(
+                              padding: EdgeInsets.only(top: 8.0),
+                              color: Colors.black12,
+                              width: 110,
+                              height: 120,
+                              child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 8.0),
+                                      child: Icon(Icons.assignment_outlined,
+                                          color: Colors.white, size: 60.0),
+                                    ),
+                                    Center(
+                                        child: Text(
+                                      'Faturas em aberto',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16.0,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    )),
+                                  ]),
+                            ),
+                          )),
                       Padding(
-                        padding: const EdgeInsets.only(top: 0.0, left:8),
-                        child:     Container(
+                        padding: const EdgeInsets.only(top: 0.0, left: 8),
+                        child: Container(
                             padding: EdgeInsets.only(top: 8.0),
                             color: Colors.black12,
                             width: 110,
@@ -192,8 +200,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
-                                  Icon(Icons.bar_chart_outlined,
-                                      color: Colors.white, size: 40.0),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: Icon(Icons.bar_chart_outlined,
+                                        color: Colors.white, size: 52.0),
+                                  ),
                                   Text(
                                     'Histórico de consumo',
                                     style: TextStyle(
@@ -216,8 +227,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
-                                  Icon(Icons.assignment,
-                                      color: Colors.white, size: 32.0),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10.0),
+                                    child: Icon(Icons.assignment_late_outlined,
+                                        color: Colors.white, size: 52.0),
+                                  ),
                                   Text(
                                     'Relatar falta de energia',
                                     style: TextStyle(
@@ -256,7 +270,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ]),
                           )),
                       Padding(
-                        padding: const EdgeInsets.only(top: 0.0, left:8),
+                        padding: const EdgeInsets.only(top: 0.0, left: 8),
                         child: Container(
                             padding: EdgeInsets.only(top: 8.0),
                             color: Colors.black12,
@@ -267,8 +281,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
-                                  Icon(Icons.lightbulb_outline_rounded,
-                                      color: Colors.white, size: 50.0),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: Icon(Icons.lightbulb_outline_rounded,
+                                        color: Colors.white, size: 50.0),
+                                  ),
                                   Text(
                                     'Solicitar religação',
                                     style: TextStyle(
@@ -314,13 +331,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
             Card(
               child: ListTile(
-                  leading: Icon(Icons.home_outlined),
-                  title: Text("Comprovante de residência"),
-                  onTap: () {
-                    print('card pressed');
-                    notifica(context);
-                  },
-                  onLongPress: notifica(context)),
+                leading: Icon(Icons.home_outlined),
+                title: Text("Comprovante de residência"),
+                onTap: () {
+                  print('card pressed');
+                },
+                // onLongPress:
+              ),
             ),
             Card(
                 child: ListTile(
@@ -333,11 +350,15 @@ class _MyHomePageState extends State<MyHomePage> {
             )),
             Card(
                 child: ListTile(
-              leading: Icon(Icons.list_alt_rounded, ),
+              leading: Icon(
+                Icons.list_alt_rounded,
+              ),
               title: Text("Minha unidade consumidora"),
               onTap: () {
-                print('card pressed');
-                notifica(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ListaUnidadesConsumidoras();
+                }));
+
               },
             )),
             Card(
@@ -346,7 +367,6 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text("Informações sobre serviços"),
               onTap: () {
                 print('card pressed');
-                notifica(context);
               },
             )),
             Card(
@@ -355,7 +375,6 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text("Histórico de protocolos de emergência"),
               onTap: () {
                 print('card pressed');
-                notifica(context);
               },
             )), //PDFCreator
             Card(
@@ -364,7 +383,6 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text("Tempo real no estado"),
               onTap: () {
                 print('card pressed');
-                notifica(context);
               },
             )),
             Card(
@@ -373,7 +391,6 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text("Telefones"),
               onTap: () {
                 print('card pressed');
-                notifica(context);
               },
             )),
             Card(
@@ -396,9 +413,66 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+}
+navigate(context){
+  Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => Cadastro()));
+
+}
+
+PopupMenuButton showMenu(context) {
+  if (unidadeConsummidora == 0) {
+    return PopupMenuButton<WhyFarther>(
+        icon: Icon(
+          Icons.more_horiz,
+          size: 42,
+          color: Colors.white,
+        ),
+        onSelected: (WhyFarther result) {
+          navigate(context);
+          // setState(() {
+          //   var _selection = result;
+          // });
+        },
+        itemBuilder: (BuildContext context) => <PopupMenuEntry<WhyFarther>>[
+              const PopupMenuItem<WhyFarther>(
+                value: WhyFarther.harder,
+                child: Text('Cadastrar unidade consumidora'),
+              ),
+            ]);
+  } else {
+    return PopupMenuButton<WhyFarther>(
+        icon: Icon(
+          Icons.more_horiz,
+          size: 42,
+          color: Colors.white,
+        ),
+        onSelected: (WhyFarther result) {
+          // setState(() {
+          //   var _selection = result;
+          // });
+        },
+        itemBuilder: (BuildContext context) => <PopupMenuEntry<WhyFarther>>[
+              const PopupMenuItem<WhyFarther>(
+                value: WhyFarther.harder,
+                child: Text('Editar'),
+              ),
+              const PopupMenuItem<WhyFarther>(
+                value: WhyFarther.smarter,
+                child: Text('Excluir'),
+              ),
+              const PopupMenuItem<WhyFarther>(
+                value: WhyFarther.selfStarter,
+                child: Text('Trocar unidade consumidora'),
+              ),
+            ]);
   }
 }
 
@@ -432,30 +506,6 @@ _launchURL() async {
   } else {
     throw 'Could not launch $url';
   }
-}
-
-x() {}
-
-notifica(context) {
-  AlertDialog(
-    title: Text('AlertDialog Title'),
-    content: SingleChildScrollView(
-      child: ListBody(
-        children: <Widget>[
-          Text('This is a demo alert dialog.'),
-          Text('Would you like to approve of this message?'),
-        ],
-      ),
-    ),
-    actions: <Widget>[
-      TextButton(
-        child: Text('Approve'),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-      ),
-    ],
-  );
 }
 
 class PDFCreator extends StatefulWidget {
