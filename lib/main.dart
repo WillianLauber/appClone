@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:celesc_app/screens/cadastro.dart';
 import 'package:celesc_app/screens/faturas.dart';
+import 'package:celesc_app/screens/infoServicos.dart';
 import 'package:celesc_app/screens/lista.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -366,7 +367,9 @@ class _MyHomePageState extends State<MyHomePage> {
               leading: Icon(Icons.screen_share_outlined),
               title: Text("Informações sobre serviços"),
               onTap: () {
-                print('card pressed');
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return infoServicos();
+                }));
               },
             )),
             Card(
