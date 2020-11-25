@@ -334,7 +334,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 leading: Icon(Icons.home_outlined),
                 title: Text("Comprovante de residência"),
                 onTap: () {
-                  print('card pressed');
+                  reportView(context);
                 },
                 // onLongPress:
               ),
