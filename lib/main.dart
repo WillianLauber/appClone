@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:celesc_app/screens/cadastro.dart';
 import 'package:celesc_app/screens/faturas.dart';
 import 'package:celesc_app/screens/infoServicos.dart';
@@ -84,9 +83,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
   void _incrementCounter() {
+    int _counter = 0;
+
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
@@ -106,8 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
 
-    future:
-    findAll();
+    future: findAll();
     return Scaffold(
       appBar: AppBar(
           iconTheme: IconThemeData(
@@ -160,7 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: InkWell(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => faturas()));
+                                  builder: (context) => Faturas()));
                             },
                             child: Container(
                               padding: EdgeInsets.only(top: 8.0),
@@ -345,7 +344,7 @@ class _MyHomePageState extends State<MyHomePage> {
               leading: Icon(Icons.access_time_sharp),
               title: Text("Agendar atendimento"),
               onTap: () {
-                onPressed:
+
                 _launchURL();
               },
             )),
@@ -368,7 +367,7 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text("Informações sobre serviços"),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return infoServicos();
+                  return InfoServicos();
                 }));
               },
             )),
@@ -402,14 +401,11 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text("Sobre"),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return sobre();
+                  return Sobre();
                 }));
               },
             )),
-            // Text(
-            //   '$_counter',
-            //   style: Theme.of(context).textTheme.headline4,
-            // ),
+
           ],
         ),
       ),
@@ -569,10 +565,10 @@ class MyStatelessWidget extends StatelessWidget {
 }
 
 class ItemLista extends StatelessWidget {
-  IconData icone;
-  String t;
+  final IconData icone;
+  final String t;
 
-  ItemLista(t, icone);
+  ItemLista(this.t, this.icone);
 
   @override
   Widget build(BuildContext context) {

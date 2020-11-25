@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 
-const _tituloAppBar = 'Criando transferência';
-const _nConta = 'Número da conta';
-const _valor = 'valor';
-const _tconfirmar = 'confirmar';
+const _tituloAppBar = 'Sobre este aplicativo';
 
-class sobre extends StatelessWidget {
+class Sobre extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Sobre este aplicativo',
+          _tituloAppBar,
           style: TextStyle(color: Colors.white),
         ),
         iconTheme: IconThemeData(

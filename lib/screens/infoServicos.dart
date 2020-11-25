@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-class infoServicos extends StatelessWidget {
+class InfoServicos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {

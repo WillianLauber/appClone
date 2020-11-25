@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class faturas extends StatelessWidget {
+class Faturas extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {

@@ -22,12 +22,12 @@ Future<Database> createDatabase() {
 Future<int> save(UnidadeConsumidora unidadeConsumidora) {
   debugPrint(unidadeConsumidora.toString());
   return createDatabase().then((db) {
-    final Map<String, dynamic> UnidadeConsumidoraMap = Map();
-    UnidadeConsumidoraMap['numero'] = unidadeConsumidora.numero;
-    UnidadeConsumidoraMap['documento'] = unidadeConsumidora.documento;
-    UnidadeConsumidoraMap['data_nasc'] = unidadeConsumidora.dataNascCliente;
-    UnidadeConsumidoraMap['apelido'] = unidadeConsumidora.apelido;
-    return db.insert('UnidadesConsumidoras', UnidadeConsumidoraMap);
+    final Map<String, dynamic> unidadeConsumidoraMap = Map();
+    unidadeConsumidoraMap['numero'] = unidadeConsumidora.numero;
+    unidadeConsumidoraMap['documento'] = unidadeConsumidora.documento;
+    unidadeConsumidoraMap['data_nasc'] = unidadeConsumidora.dataNascCliente;
+    unidadeConsumidoraMap['apelido'] = unidadeConsumidora.apelido;
+    return db.insert('UnidadesConsumidoras', unidadeConsumidoraMap);
   });
 }
 
