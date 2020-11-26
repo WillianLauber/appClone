@@ -2,6 +2,7 @@ import 'package:celesc_app/screens/cadastro.dart';
 import 'package:celesc_app/screens/faturas.dart';
 import 'package:celesc_app/screens/infoServicos.dart';
 import 'package:celesc_app/screens/lista.dart';
+import 'package:celesc_app/screens/telefones.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -83,7 +84,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   void _incrementCounter() {
     int _counter = 0;
 
@@ -106,7 +106,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
 
-    future: findAll();
+    future:
+    findAll();
     return Scaffold(
       appBar: AppBar(
           iconTheme: IconThemeData(
@@ -344,7 +345,6 @@ class _MyHomePageState extends State<MyHomePage> {
               leading: Icon(Icons.access_time_sharp),
               title: Text("Agendar atendimento"),
               onTap: () {
-
                 _launchURL();
               },
             )),
@@ -358,7 +358,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return ListaUnidadesConsumidoras();
                 }));
-
               },
             )),
             Card(
@@ -392,7 +391,9 @@ class _MyHomePageState extends State<MyHomePage> {
               leading: Icon(Icons.call),
               title: Text("Telefones"),
               onTap: () {
-                print('card pressed');
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return Telefones();
+                }));
               },
             )),
             Card(
@@ -405,7 +406,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 }));
               },
             )),
-
           ],
         ),
       ),
@@ -420,10 +420,10 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-navigate(context){
-  Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => Cadastro()));
 
+navigate(context) {
+  Navigator.of(context)
+      .push(MaterialPageRoute(builder: (context) => Cadastro()));
 }
 
 PopupMenuButton showMenu(context) {
