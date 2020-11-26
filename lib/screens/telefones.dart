@@ -14,30 +14,32 @@ class Telefones extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         )),
         body: SingleChildScrollView(
-            child: Column(children: <Widget>[    Card(
-                child: ListTile(
-                  trailing: Icon(Icons.call),
-                  title: Text("Emergência - (48) 9903-3939"),
-                  onTap: () {
-                        launch("tel://21213123123");
-                  },
-                )), //PDFCreator
-              Card(
-                  child: ListTile(
-                    trailing: Icon(Icons.call),
-                    title: Text("Comercial - (48) 9902-3939"),
-                    onTap: () {
-                      launch("tel://21213123123");
-                    },
-                  )),
-    Card(
-    child: ListTile(
-    trailing: Icon(Icons.call),
-    title: Text("Ouvidoria - (48) 9902-3939"),
-    onTap: () {
-    launch("tel://21213123123");
-    },
-    )),])));
+            child: Column(children: <Widget>[
+          Card(
+              child: ListTile(
+            trailing: Icon(Icons.call),
+            title: Text("Emergência - (48) 9903-3939"),
+            onTap: () {
+              launch("tel://21213123123");
+            },
+          )), //PDFCreator
+          Card(
+              child: ListTile(
+            trailing: Icon(Icons.call),
+            title: Text("Comercial - (48) 9902-3939"),
+            onTap: () {
+              launch("tel://21213123123");
+            },
+          )),
+          Card(
+              child: ListTile(
+            trailing: Icon(Icons.call),
+            title: Text("Ouvidoria - (48) 9902-3939"),
+            onTap: () {
+              launch("tel://21213123123");
+            },
+          )),
+        ])));
   }
 
   void launchUrl(String url) async {
